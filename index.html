@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+
+    <title>Tip calculator app</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="logo"><img src="./images/logo.svg" alt="logo" /></div>
+    <main>
+      <div class="container">
+        <section>
+          <label for="bill">Bill</label>
+          <div class="input-container">
+            <input
+              id="bill"
+              class="input-number"
+              type="number"
+              name="bill"
+              placeholder="0"
+            />
+            <img class="icon" src="./images/icon-dollar.svg" alt="dollar" />
+          </div>
+        </section>
+
+        <section>
+          <p>Select Tip %</p>
+          <div id="tip" class="grid-container">
+            <div id="%5" class="grid-item">5%</div>
+            <div id="%10" class="grid-item">10%</div>
+            <div id="%15" class="grid-item">15%</div>
+            <div id="%20" class="grid-item">20%</div>
+            <div id="%50" class="grid-item">50%</div>
+            <div class="grid-item custom">
+              <input
+                id="custom-tip"
+                class="input-number"
+                type="number"
+                placeholder="Custom"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="wraper">
+            <label for="people">Number of People</label>
+            <label for="people" id="zero">Can't be zero</label>
+          </div>
+          <div class="input-container">
+            <input
+              id="number-of-people"
+              class="input-number"
+              type="number"
+              name="people"
+              placeholder="0"
+            />
+            <img class="icon" src="./images/icon-person.svg" alt="person" />
+          </div>
+        </section>
+      </div>
+      <div class="container">
+        <div id="display">
+          <div>
+            <section class="dispay-section">
+              <div class="title">
+                <p class="white">Tip Amount</p>
+                <p class="sub-white">/ person</p>
+              </div>
+              <div id="tip-amount" class="amount">$0.00</div>
+            </section>
+            <section class="dispay-section">
+              <div class="title">
+                <p class="white">Total</p>
+                <p class="sub-white">/ person</p>
+              </div>
+              <div id="total" class="amount">$0.00</div>
+            </section>
+            <section><p id="show-tip" class="white">Tip:</p></section>
+          </div>
+          <div>
+            <section id="reset" class="dispay-section">
+              <a href="">RESET</a>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Nikoloz Lezhava</a>.
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
