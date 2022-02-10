@@ -1,3 +1,4 @@
+// all elements
 const bill = document.getElementById("bill");
 const customTip = document.getElementById("custom-tip");
 const numberOfPeople = document.getElementById("number-of-people");
@@ -6,17 +7,13 @@ const tipAmount = document.getElementById("tip-amount");
 const total = document.getElementById("total");
 const zeroError = document.getElementById("zero");
 const reset = document.getElementById("reset");
+// all elements
 
-const showTip = document.getElementById("show-tip");
+zeroError.classList.add("invisible"); //set warn zero
 
-zeroError.classList.add("invisible");
+resetCalc(); //reset everything at the begining
 
-resetCalc();
-
-// bill.value = 100;
-// customTip.value = 20;
-// numberOfPeople.value = 7;
-
+//add event listeners
 numberOfPeople.addEventListener("change", function (e) {
   if (e.target.value <= 0) {
     e.target.classList.add("red-border");
@@ -31,16 +28,20 @@ numberOfPeople.addEventListener("change", function (e) {
 
 tips.addEventListener("click", function (e) {
   let val = e.target.value;
-  if (val > 0) {
-    // localStorage.setItem("tip_", val);
-    console.log(val);
-  } else {
+
+  if (!val) {
     val = e.target.innerText.split("");
     val.pop();
     val = val.join("");
   }
   localStorage.setItem("tip_", val);
   update();
+
+  for (let i = 0; i < tips.childElementCount - 1; i++) {
+    tips.children[i].removeAttribute("style");
+  }
+  tips.children[5].children[0].removeAttribute("style");
+  e.target.style.backgroundColor = "#26c0ab";
 });
 
 bill.addEventListener("change", function (e) {
@@ -48,15 +49,17 @@ bill.addEventListener("change", function (e) {
   update();
 });
 
+reset.addEventListener("click", resetCalc);
+
+//update function
 const update = () => {
   let val1, val2;
-  let bill_ = parseInt(localStorage.getItem("bill_"));
-  let tip_ = parseInt(localStorage.getItem("tip_"));
-  let nPeople_ = parseInt(localStorage.getItem("nPeople_"));
-  val1 = (bill_ * tip_) / 100 + bill_;
-  val2 = val1 / nPeople_;
+  let bill_ = parseFloat(localStorage.getItem("bill_"));
+  let tip_ = parseFloat(localStorage.getItem("tip_"));
+  let nPeople_ = parseFloat(localStorage.getItem("nPeople_"));
+  val1 = ((bill_ * tip_) / 100 + bill_) / nPeople_;
+  val2 = (bill_ * tip_) / 100 / nPeople_;
 
-  showTip.innerHTML = `Tip: ${tip_}%`;
   if (bill_ <= 0 || nPeople_ <= 0) {
     total.innerHTML = "$0.00";
     tipAmount.innerHTML = "$0.00";
@@ -67,8 +70,7 @@ const update = () => {
   tipAmount.innerHTML = `$${val2.toFixed(2)}`;
 };
 
-reset.addEventListener("click", resetCalc);
-
+//reset function
 function resetCalc() {
   localStorage.setItem("bill_", 0);
   localStorage.setItem("tip_", 0);
